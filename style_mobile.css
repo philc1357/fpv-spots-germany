@@ -1,0 +1,12 @@
+@media (max-width: 800px) {
+    #map {
+        height: 600px;
+        width: 100%;  
+        opacity: 0.5;
+      }
+
+    #cookie_banner {
+      height: 100%;
+      width: 100%;
+    }
+}
