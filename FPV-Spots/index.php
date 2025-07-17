@@ -34,17 +34,20 @@
 
         <div id="map"></div>
 
-        <div id="save_popup" class="mt-4">
+        <button class="btn btn-success mt-3" onclick="show_save_popup()">Neuer Spot</button>
+
+        <div id="save_popup" class="mt-4 d-none">
             <hr class="mt-3">
-            <p class="fs-3 fw-bold">Spot Speichern</p>
+            <p class="fs-3 fw-bold">Neuen Spot erstellen</p>
+            <p class="fst-italic">* klicke in die Karte um den Längen- und Breitengrad automatisch auszufüllen.</p>
             <form action="">
-                <input type="text" id="input_name" title="Name" name="name" class="form-control w-100" placeholder="Spotname" required>
+                <input type="text" id="input_name" title="Name" name="spotname" class="form-control w-100" placeholder="Spotname" required>
                 <input type="text" id="input_kategorie" title="Kategorie" name="kategorie" class="form-control w-100 my-1" placeholder="Kategorie" required>
                 <input type="text" id="input_bodengrund" title="Bodengrund" name="bodengrund" class="form-control w-100" placeholder="Bodengrund" required>
                 <input type="text" id="input_laengengrad" title="Längengrad" name="laengengrad" class="form-control w-100 my-1" placeholder="Längengrad" required>
                 <input type="text" id="input_breitengrad" title="Breitengrad" name="breitengrad" class="form-control w-100 my-1" placeholder="Breitengrad" required>
                 <button class="btn btn-success mt-1">Speichern</button>
-                <button class="btn btn-danger mt-1">Abbrechen</button>
+                <button class="btn btn-danger mt-1" onclick="hide_save_popup()">Abbrechen</button>
             </form>
             </div>
     </main>
@@ -57,6 +60,14 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="resources/private/js/cookie.js"></script>
     <script src="resources/private/js/location.js"></script>
-    <script src="resources/private/js/save_location.js"></script>
+    <script>
+        function show_save_popup() {
+            document.getElementById("save_popup").classList.remove("d-none");
+        }
+
+        function hide_save_popup() {
+            document.getElementById("save_popup").classList.add("d-none");
+        }
+    </script>
 </body>
 </html>

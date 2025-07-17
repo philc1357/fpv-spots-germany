@@ -8,10 +8,13 @@ if ("geolocation" in navigator) {
 
       const map = L.map('map').setView([lat, lon], 13);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '',
-        maxZoom: 19,
-      }).addTo(map);
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles © Esri',
+          maxZoom: 19
+        }
+      ).addTo(map);
+
 
       // Start-Marker
       L.marker([lat, lon]).addTo(map)
@@ -29,10 +32,16 @@ if ("geolocation" in navigator) {
 
         // Neuen Marker setzen und in Variable speichern
         marker = L.marker([lat, lng]).addTo(map)
-          .bindPopup(`Neuer Marker bei:<br>${lat.toFixed(5)}, ${lng.toFixed(5)} <br> <button class="mx-auto">Speichern</button>`)
+          .bindPopup(`Neuer Marker bei:<br>${lat.toFixed(5)}, ${lng.toFixed(5)} <br> <button onclick="show_save_popup()" class="mx-auto">Speichern</button>`)
           .openPopup();
 
         console.log('Marker gesetzt bei:', lat, lng);
+      });
+
+      // Nach dem Aufruf von L.map(...)
+      const tiles = document.querySelectorAll('.leaflet-tile');
+      tiles.forEach(tile => {
+        tile.style.filter = 'contrast(1.4) brightness(1.2) saturate(1.6)';
       });
     },
 
@@ -45,10 +54,13 @@ if ("geolocation" in navigator) {
 
       const map = L.map('map').setView([lat, lon], 5);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '',
-        maxZoom: 19,
-      }).addTo(map);
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles © Esri',
+          maxZoom: 19
+        }
+      ).addTo(map);
+
 
       map.on('click', function (e) {
         const { lat, lng } = e.latlng;
@@ -58,11 +70,18 @@ if ("geolocation" in navigator) {
         }
 
         marker = L.marker([lat, lng]).addTo(map)
-          .bindPopup(`Neuer Marker bei:<br>${lat.toFixed(5)}, ${lng.toFixed(5)} <br> <button>Speichern</button>`)
+          .bindPopup(`Neuer Marker bei:<br>${lat.toFixed(5)}, ${lng.toFixed(5)} <br> <button onclick="show_save_popup()">Speichern</button>`)
           .openPopup();
 
         console.log('Fallback-Marker gesetzt bei:', lat, lng);
       });
+
+      // Nach dem Aufruf von L.map(...)
+      const tiles = document.querySelectorAll('.leaflet-tile');
+      tiles.forEach(tile => {
+        tile.style.filter = 'contrast(1.4) brightness(1.2) saturate(1.6)';
+      });
+
     }
   );
 } else {
