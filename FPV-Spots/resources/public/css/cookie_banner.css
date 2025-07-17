@@ -1,0 +1,25 @@
+/* Cookie-Banner */
+#cookie_banner {
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    bottom: 0px;
+    left: 0%;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Horizontale Zentrierung */
+    align-items: center; /* Vertikale Zentrierung */
+    text-align: center;
+}
+
+/* Inneres div ebenfalls mit Flexbox mittig ausrichten */
+#cookie_banner > div {
+    display: flex;
+    flex-direction: column; /* Elemente untereinander anordnen */
+    align-items: center; /* Inhalte mittig ausrichten */
+    gap: 10px; /* Abstand zwischen Text und Buttons */
+}
